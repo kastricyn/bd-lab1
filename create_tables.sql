@@ -36,8 +36,7 @@ CREATE TABLE "location"(
     "id" BIGSERIAL PRIMARY KEY,
     "name" VARCHAR(255) NOT NULL,
     "radius" DOUBLE PRECISION NOT NULL,
-    "center-coordination-latitude" DOUBLE PRECISION NOT NULL,
-    "center-coordinates-longitude" DOUBLE PRECISION NOT NULL,
+    "center-coordination" POINT NOT NULL,
     "type_id" INTEGER NOT NULL
 );
 
@@ -68,16 +67,16 @@ CREATE TABLE "direction"(
 );
 
 ALTER TABLE
-    "input-output" ADD CONSTRAINT "input_output_city_id_foreign" FOREIGN KEY("city_id") REFERENCES "city"("id");
+    "input-output" ADD CONSTRAINT "input_output_city_id_foreign" FOREIGN KEY("city_id") REFERENCES "city"("id") ON DELETE CASCADE;
 ALTER TABLE
-    "city" ADD CONSTRAINT "city_location_id_foreign" FOREIGN KEY("location_id") REFERENCES "location"("id");
+    "city" ADD CONSTRAINT "city_location_id_foreign" FOREIGN KEY("location_id") REFERENCES "location"("id") ON DELETE CASCADE;
 ALTER TABLE
-    "passport" ADD CONSTRAINT "passport_people_id_foreign" FOREIGN KEY("people_id") REFERENCES "people"("id");
+    "passport" ADD CONSTRAINT "passport_people_id_foreign" FOREIGN KEY("people_id") REFERENCES "people"("id") ON DELETE CASCADE;
 ALTER TABLE
-    "build" ADD CONSTRAINT "build_location_id_foreign" FOREIGN KEY("location_id") REFERENCES "location"("id");
+    "build" ADD CONSTRAINT "build_location_id_foreign" FOREIGN KEY("location_id") REFERENCES "location"("id") ON DELETE CASCADE;
 ALTER TABLE
-    "input-output" ADD CONSTRAINT "input_output_location_id_foreign" FOREIGN KEY("location_id") REFERENCES "location"("id");
+    "input-output" ADD CONSTRAINT "input_output_location_id_foreign" FOREIGN KEY("location_id") REFERENCES "location"("id") ON DELETE CASCADE;
 ALTER TABLE
-    "location" ADD CONSTRAINT "location_type_id_foreign" FOREIGN KEY("type_id") REFERENCES "location-type"("id");
+    "location" ADD CONSTRAINT "location_type_id_foreign" FOREIGN KEY("type_id") REFERENCES "location-type"("id") ON DELETE CASCADE;
 ALTER TABLE
-    "input-output" ADD CONSTRAINT "input_output_direction_id_foreign" FOREIGN KEY("direction_id") REFERENCES "direction"("id");
+    "input-output" ADD CONSTRAINT "input_output_direction_id_foreign" FOREIGN KEY("direction_id") REFERENCES "direction"("id") ON DELETE CASCADE;
