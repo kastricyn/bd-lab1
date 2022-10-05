@@ -1,12 +1,12 @@
--- DROP SCHEMA s311734 CASCADE;
--- CREATE SCHEMA s311734;
+DROP SCHEMA s311734 CASCADE;
+CREATE SCHEMA s311734;
 
 CREATE TABLE "people"(
-    "id" BIGINT PRIMARY KEY,
+    "id" BIGSERIAL PRIMARY KEY,
     "surname" VARCHAR(255) NOT NULL,
     "name" VARCHAR(255) NOT NULL,
     "birthdate" DATE NOT NULL,
-    "wisedom" INTEGER NOT NULL
+    "wisedom" INTEGER NOT NULL DEFAULT 0 CHECK ("wisedom" >= 0)
 ); 
 
 CREATE TABLE "passport"(
@@ -19,13 +19,13 @@ CREATE TABLE "passport"(
 );
 
 CREATE TABLE "city"(
-    "id" INTEGER PRIMARY KEY,
+    "id" SERIAL PRIMARY KEY,
     "name" VARCHAR(255) NULL,
-    "location_id" INTEGER NOT NULL
+    "location_id" BIGINT NOT NULL
 );
 
 CREATE TABLE "input-output"(
-    "id" INTEGER PRIMARY KEY,
+    "id" SERIAL PRIMARY KEY,
     "name" VARCHAR(255) NOT NULL,
     "direction_id" SMALLINT NOT NULL,
     "city_id" INTEGER NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE "input-output"(
 );
 
 CREATE TABLE "location"(
-    "id" BIGINT PRIMARY KEY,
+    "id" BIGSERIAL PRIMARY KEY,
     "name" VARCHAR(255) NOT NULL,
     "radius" DOUBLE PRECISION NOT NULL,
     "center-coordination-latitude" DOUBLE PRECISION NOT NULL,
@@ -42,12 +42,12 @@ CREATE TABLE "location"(
 );
 
 CREATE TABLE "location-type"(
-    "id" INTEGER PRIMARY KEY,
+    "id" SERIAL PRIMARY KEY,
     "name" VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE "build"(
-    "id" BIGINT PRIMARY KEY,
+    "id" BIGSERIAL PRIMARY KEY,
     "location_id" INTEGER NOT NULL,
     "length" INTEGER NOT NULL,
     "width" INTEGER NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE "research"(
 );
 
 CREATE TABLE "direction"(
-    "id" SMALLINT PRIMARY KEY,
+    "id" SMALLSERIAL PRIMARY KEY,
     "name" VARCHAR(255) NOT NULL
 );
 
