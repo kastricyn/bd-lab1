@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: studs
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: unless-stopped
+    volumes:
+      - ./mount:/var/lib/postgresql/data:rw
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
