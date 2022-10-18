@@ -71,5 +71,18 @@ INSERT INTO "build" (name, location_id, length, width, heigh, date_building)
 VALUES ('Build in the two bigest cities', (SELECT * FROM rows), 10, 20, 30, now());
 
 
+-- вставляем людей
+INSERT INTO "people" (surname, name, birthdate) VALUES ('SUR1', 'NAME1', '2000-1-1');
+INSERT INTO "people" (surname, name, birthdate) VALUES ('SUR2', 'NAME2', '2000-2-2');
+INSERT INTO "people" (surname, name, birthdate) VALUES ('SUR3', 'NAME3', '2000-2-3');
 
+-- добавим паспорта
+INSERT INTO "passport" (series, number, "who-given", "when-given") VALUES ('4040', '4568', 'Giver1', now());
+INSERT INTO "passport" (series, number, "who-given", "when-given", "people_id") VALUES ('4040', '4562', 'Giver1', now(), 1);
+INSERT INTO "passport" (series, number, "who-given", "when-given", "people_id") VALUES ('4000', '4562', 'Giver2', '1965-12-1', 1);
+INSERT INTO "passport" (series, number, "who-given", "when-given", "people_id") VALUES ('4000', '4563', 'Giver2', '1965-12-1', 2);
 
+-- add location type input-output
+INSERT INTO "location-type" ("name") VALUES ('input'), ('output'), ('bidirection');
+
+-- add 

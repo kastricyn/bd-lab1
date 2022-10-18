@@ -12,7 +12,7 @@ CREATE TABLE "people"(
 CREATE TABLE "passport"(
     "series" INTEGER NOT NULL,
     "number" INTEGER NOT NULL,
-    "when-given" VARCHAR(255) NOT NULL,
+    "when-given" DATE NOT NULL,
     "who-given" VARCHAR(255) NOT NULL,
     "people_id" BIGINT NULL,
     PRIMARY KEY (series, number)
