@@ -34,18 +34,19 @@ CREATE TABLE "input-output"(
 
 CREATE TABLE "location"(
     "id" BIGSERIAL PRIMARY KEY,
-    "radius" DOUBLE PRECISION NOT NULL,
+    "radius" DOUBLE PRECISION NOT NULL CHECK ("radius" >= 0),
     "center-coordination" POINT NOT NULL,
     "type_id" INTEGER NOT NULL
 );
 
 CREATE TABLE "location-type"(
     "id" SERIAL PRIMARY KEY,
-    "name" VARCHAR(255) NOT NULL
+    "name" VARCHAR(255) UNIQUE NOT NULL
 );
 
 CREATE TABLE "build"(
     "id" BIGSERIAL PRIMARY KEY,
+    "name" VARCHAR(255) NOT NULL,
     "location_id" INTEGER NOT NULL,
     "length" INTEGER NOT NULL,
     "width" INTEGER NOT NULL,
@@ -62,7 +63,7 @@ CREATE TABLE "research"(
 
 CREATE TABLE "direction"(
     "id" SMALLSERIAL PRIMARY KEY,
-    "name" VARCHAR(255) NOT NULL
+    "name" VARCHAR(255) UNIQUE NOT NULL
 );
 
 ALTER TABLE
