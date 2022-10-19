@@ -1,3 +1,6 @@
+set schema 's311734';
+
+
 INSERT INTO "location-type" (name) VALUES ('city');
 INSERT INTO "location-type" (name) VALUES ('build');
 INSERT INTO "location-type" (name) VALUES ('input-output');
@@ -7,7 +10,7 @@ INSERT INTO "location-type" (name) VALUES ('input-output');
 
 WITH rows AS (
 INSERT INTO "location" (radius, "center-coordination", type_id) 
-    VALUES ( 10, POINT(0, 0), 
+    VALUES ( 5, POINT(0, 0), 
         (SELECT id FROM "location-type" WHERE name = 'city')
 ) RETURNING id)
 INSERT INTO "city" (name, location_id) VALUES ('MainCity', (SELECT * FROM rows));
@@ -51,7 +54,7 @@ INSERT INTO "location" (radius, "center-coordination", type_id)
         (SELECT id FROM "location-type" WHERE name = 'build')
 ) RETURNING id)
 INSERT INTO "build" (name, location_id, length, width, heigh, date_building) 
-VALUES ('Build in all of the three cities', (SELECT * FROM rows), 10, 20, 30, '10/27/2002');
+VALUES ('Build in all of the three cities', (SELECT * FROM rows), 10, 20, 30, '2002-10-27');
 
 WITH rows AS (
 INSERT INTO "location" (radius, "center-coordination", type_id) 
@@ -84,5 +87,3 @@ INSERT INTO "passport" (series, number, "who-given", "when-given", "people_id") 
 
 -- add location type input-output
 INSERT INTO "location-type" ("name") VALUES ('input'), ('output'), ('bidirection');
-
--- add 
