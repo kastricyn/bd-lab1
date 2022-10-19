@@ -57,8 +57,9 @@ CREATE TABLE "build"(
 CREATE TABLE "research"(
     "people_id" BIGINT REFERENCES "people" ("id") ON DELETE CASCADE,
     "build_id" BIGINT REFERENCES "build" ON DELETE CASCADE,
-    "percent" DOUBLE PRECISION NOT NULL,
-    PRIMARY KEY(people_id, build_id)
+    "percent" DOUBLE PRECISION DEFAULT 0 NOT NULL,
+    PRIMARY KEY(people_id, build_id),
+    CONSTRAINT "percent_must_be_GE_0_LE_100" CHECK (percent >= 0 AND percent <= 100)
 );
 
 CREATE TABLE "direction"(

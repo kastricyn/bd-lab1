@@ -86,4 +86,29 @@ INSERT INTO "passport" (series, number, "who-given", "when-given", "people_id") 
 INSERT INTO "passport" (series, number, "who-given", "when-given", "people_id") VALUES ('4000', '4563', 'Giver2', '1965-12-1', 2);
 
 -- add location type input-output
-INSERT INTO "location-type" ("name") VALUES ('input'), ('output'), ('bidirection');
+INSERT INTO "direction" ("name") VALUES ('input'), ('output'), ('bidirection');
+
+-- add input-outputs 
+-- а их нет в городе, думали их так просто найти, ха))
+
+-- add research
+INSERT INTO "research" (people_id, build_id) VALUES(
+    (SELECT people_id FROM passport WHERE series = 4000 AND number = 4563),
+    (SELECT id FROM build WHERE name = 'Здание в захалуйстье')
+);
+
+INSERT INTO "research" (people_id, build_id, percent) VALUES(
+    (SELECT people_id FROM passport WHERE series = 4000 AND number = 4562),
+    1,
+    87
+);
+INSERT INTO "research" (people_id, build_id, percent) VALUES(
+    (SELECT people_id FROM passport WHERE series = 4000 AND number = 4562),
+    3,
+    97
+);
+INSERT INTO "research" (people_id, build_id, percent) VALUES(
+    (SELECT people_id FROM passport WHERE series = 4000 AND number = 4562),
+    4,
+    89
+);
